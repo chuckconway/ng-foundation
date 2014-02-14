@@ -38,6 +38,8 @@ module.exports = function ( grunt ) {
      * source files. It is first processed as a Grunt template, where the `<%=`
      * pairs are evaluated based on this very configuration object.
      */
+
+
     meta: {
       banner: 
         '/**\n' +
@@ -141,7 +143,7 @@ module.exports = function ( grunt ) {
         files: [
           {
             src: [ '**' ],
-            dest: '<%= compile_dir %>/assets',
+            dest: '<%= compile_dir %>/client/assets',
             cwd: '<%= build_dir %>/assets',
             expand: true
           }
@@ -180,7 +182,7 @@ module.exports = function ( grunt ) {
           '<%= html2js.common.dest %>', 
           'module.suffix' 
         ],
-        dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
+        dest: '<%= compile_dir %>/client/assets/<%= pkg.name %>-<%= pkg.version %>.js'
       }
     },
 
@@ -341,7 +343,7 @@ module.exports = function ( grunt ) {
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
-          '<%= recess.build.dest %>'
+          //'<%= recess.build.dest %>'
         ]
       },
 
@@ -427,7 +429,7 @@ module.exports = function ( grunt ) {
        */
       assets: {
         files: [ 
-          'src/assets/**/*'
+          'src/client/assets/**/*'
         ],
         tasks: [ 'copy:build_assets' ]
       },
@@ -475,6 +477,9 @@ module.exports = function ( grunt ) {
 
      }
   };
+
+    grunt.log.write(taskConfig);
+
 
   grunt.initConfig( grunt.util._.extend( taskConfig, userConfig ) );
 
@@ -544,7 +549,7 @@ module.exports = function ( grunt ) {
       return file.replace( dirRE, '' );
     });
 
-    grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
+    grunt.file.copy('src/client/index.html', this.data.dir + '/client/index.html', {
       process: function ( contents, path ) {
         return grunt.template.process( contents, {
           data: {

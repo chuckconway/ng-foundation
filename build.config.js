@@ -27,7 +27,7 @@ module.exports = {
     ctpl: [ 'src/client/common/**/*.tpl.html' ],
 
     html: [ 'src/client/index.html' ],
-    less: 'src/client/less/main.less'
+    less: 'src/client/less/styles.less'
   },
 
   /**
