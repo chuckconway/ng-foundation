@@ -289,7 +289,7 @@ module.exports = function ( grunt ) {
        */
       app: {
         options: {
-          base: 'src/app'
+          base: 'src/client/app'
         },
         src: [ '<%= app_files.atpl %>' ],
         dest: '<%= build_dir %>/templates-app.js'
@@ -300,7 +300,7 @@ module.exports = function ( grunt ) {
        */
       common: {
         options: {
-          base: 'src/common'
+          base: 'src/client/common'
         },
         src: [ '<%= app_files.ctpl %>' ],
         dest: '<%= build_dir %>/templates-common.js'
@@ -339,7 +339,7 @@ module.exports = function ( grunt ) {
         dir: '<%= build_dir %>',
         src: [
           '<%= vendor_files.js %>',
-          '<%= build_dir %>/src/**/*.js',
+          '<%= build_dir %>/src/client/**/*.js',
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
