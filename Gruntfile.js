@@ -478,8 +478,6 @@ module.exports = function ( grunt ) {
      }
   };
 
-    grunt.log.write(taskConfig);
-
 
   grunt.initConfig( grunt.util._.extend( taskConfig, userConfig ) );
 

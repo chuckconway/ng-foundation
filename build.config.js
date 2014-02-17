@@ -21,7 +21,7 @@ module.exports = {
    */
   app_files: {
     js: [ 'src/client/**/*.js', '!src/**/*.spec.js', '!src/client/assets/**/*.js','!src/server/**/*.js' ],
-    jsunit: [ 'src/**/*.spec.js' ],
+    jsunit: [ 'src/client/**/*.spec.js' ],
 
     atpl: [ 'src/client/app/**/*.tpl.html' ],
     ctpl: [ 'src/client/common/**/*.tpl.html' ],
