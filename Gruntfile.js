@@ -10,6 +10,8 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-wrap');
 
     //Load the build.config.js file. This file contains build specific information that will replace
     //tokens in the taskConfig object.
@@ -124,25 +126,92 @@ module.exports = function(grunt){
          * Minify the sources!
          */
         uglify: {
-            compile: {
+            local_javascript: {
+                files: {
+                    '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js': [
+                        '<%= build_dir %>/src/**/*.js',
+                        '<%= html2js.app.dest %>',
+                        '<%= html2js.common.dest %>',
+                    ]
+                }
+            },
+            compile_all_files: {
                 options: {
                     banner: '<%= meta.banner %>'
                 },
                 files: {
                     '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js': [
                         '<%= vendor_files.js %>',
-                        //'module.prefix',
-                        '<%= build_dir %>/src/**/*.js',
-                        //'<%= html2js.app.dest %>',
-                        //'<%= html2js.common.dest %>',
-                        //'module.suffix'
+                        '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
                     ]
                 }
+            }
+        },
+
+        wrap:{
+            wrap_local_javascript:{
+                src:['<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'],
+                dest:'<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
+                options:{
+                    wrapper:['(function ( window, angular) {','})( window, window.angular );']
+                }
+            }
+        },
+
+
+        /**
+         * HTML2JS is a Grunt plugin that takes all of your template files and
+         * places them into JavaScript files as strings that are added to
+         * AngularJS's template cache. This means that the templates too become
+         * part of the initial payload as one JavaScript file. Neat!
+         */
+        html2js: {
+            /**
+             * These are the templates from `src/app`.
+             */
+            app: {
+                options: {
+                    base: 'src/client/app',
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true,
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                },
+                src: [ '<%= app_files.atpl %>' ],
+                dest: '<%= build_dir %>/assets/templates-app-<%= pkg.version %>.js'
+            },
+
+            /**
+             * These are the templates from `src/common`.
+             */
+            common: {
+                options: {
+                    base: 'src/client/common',
+                    htmlmin: {
+                        collapseBooleanAttributes: true,
+                        collapseWhitespace: true,
+                        removeAttributeQuotes: true,
+                        removeComments: true,
+                        removeEmptyAttributes: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true
+                    }
+                },
+                src: [ '<%= app_files.ctpl %>' ],
+                dest: '<%= build_dir %>/assets/templates-common-<%= pkg.version %>.js'
             }
         }
     };
 
+    grunt.registerTask( 'jsmin', [ 'uglify:local_javascript', 'wrap:wrap_local_javascript', 'uglify:compile_all_files' ] );
+
     var renderedConfig = _.extend(taskConfig, buildConfig);
     grunt.initConfig(renderedConfig);
-
 };
