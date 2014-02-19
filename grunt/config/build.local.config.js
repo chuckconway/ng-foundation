@@ -7,8 +7,8 @@ module.exports = {
    * development and the `compile_dir` folder is where our app resides once it's
    * completely built.
    */
-  build_dir: 'build',
-  compile_dir: 'bin',
+  build_directory: 'build',
+  bin_directory: 'bin',
 
   /**
    * This is a collection of file patterns that refer to our app code (the
@@ -19,21 +19,21 @@ module.exports = {
    * main HTML file, `less` is our main stylesheet, and `unit` contains our
    * app's unit tests.
    */
-  app_files: {
-    js: [ 'src/client/**/*.js', '!src/**/*.spec.js', '!src/client/assets/**/*.js','!src/server/**/*.js' ],
-    jsunit: [ 'src/client/**/*.spec.js' ],
+  app: {
+    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/client/assets/**/*.js','!src/server/**/*.js' ],
+    jsunit: [ 'src/**/*.spec.js' ],
 
-    atpl: [ 'src/client/app/**/*.tpl.html' ],
-    ctpl: [ 'src/client/common/**/*.tpl.html' ],
+    app_templates: [ 'src/app/**/*.tpl.html' ],
+    common_templates: [ 'src/common/**/*.tpl.html' ],
 
-    html: [ 'src/client/index.html' ],
-    less: 'src/client/less/styles.less'
+    html: [ 'src/index.html' ],
+    less: 'src/less/styles.less'
   },
 
   /**
    * This is a collection of files used during testing only.
    */
-  test_files: {
+  tests: {
     js: [
       'dependencies/angular-mocks/angular-mocks.js'
     ]
@@ -57,7 +57,7 @@ module.exports = {
    * with our app's assets. This structure is flattened, so it is not
    * recommended that you use wildcards.
    */
-  vendor_files: {
+  dependencies: {
     js: [
       'dependencies/angular/angular.js',
       'dependencies/angular-bootstrap/ui-bootstrap-tpls.min.js',

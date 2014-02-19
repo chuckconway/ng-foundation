@@ -349,7 +349,7 @@ module.exports = function ( grunt ) {
           '<%= build_dir %>/src/client/**/*.js',
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
-          '<%= vendor_files.css %>',
+          '<%= vendor_files.css %>'
           //'<%= recess.build.dest %>'
         ]
       },
@@ -539,7 +539,7 @@ module.exports = function ( grunt ) {
     });
   }
 
-  /** 
+  /**
    * The index.html template includes the stylesheet and javascript sources
    * based on dynamic names calculated in this Gruntfile. This task assembles
    * the list into variables for the template to use and then runs the
