@@ -54,7 +54,7 @@ module.exports = {
          */
         assets: {
             files: [
-                'src/client/assets/**/*'
+                'src/assets/**/*'
             ],
             tasks: [ 'copy:build_assets' ]
         },

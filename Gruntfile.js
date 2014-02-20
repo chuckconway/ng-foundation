@@ -20,7 +20,8 @@ module.exports = function(grunt){
                          './grunt/copy.task.js',
                          './grunt/less.task.js',
                          './grunt/index.task.js',
-                         './grunt/misc.task.js']);
+                         './grunt/misc.task.js',
+                         './grunt/clean.task.js']);
 
     grunt.initConfig(config);
 
@@ -34,7 +35,7 @@ module.exports = function(grunt){
                                   'uglify:compile_all_files' ]);
 
 
-    grunt.registerTask('debug',['clean',
+    grunt.registerTask('debug',['clean:all',
                                 'copy:app_styles_to_build_styles',
                                 'less:lint_concat',
                                 'copy:local_assets_to_build',
@@ -43,17 +44,18 @@ module.exports = function(grunt){
                                 'copy:app_javascript_to_build_javascript',
                                 'copy:dependencies_javascript_to_build_javascript',
                                 'index:debug',
-                                'copy:copy_all_to_bin']);
+                                'copy:copy_all_to_bin',
+                                'clean:emptydirectories',
+                                'clean:build']);
 
-    grunt.registerTask('release',['clean',
+    grunt.registerTask('release',['clean:all',
         'less:lint_compile_concat',
         'jsmin',
         'copy:copy_assets_to_bin',
         'copy:copy_common_to_bin',
-        'index:release']);
- //TODO: clean empty directories: http://stackoverflow.com/questions/21001469/grunt-file-copy-exclude-empty-folders
-//    grunt.registerTask('qa',[]);
-//    grunt.registerTask('production',[]);
+        'index:release',
+        'clean:emptydirectories',
+        'clean:build']);
 
     /**
      * The index.html template includes the stylesheet and javascript sources

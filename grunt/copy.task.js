@@ -12,7 +12,7 @@ module.exports = {
             files:[
                 {
                     cwd:'src/assets',
-                    src:['**'],
+                    src:['**', '!**/*.md'],
                     dest:'<%= build_directory %>/assets/',
                     expand:true
                 }
@@ -45,7 +45,7 @@ module.exports = {
         app_styles_to_build_styles: {
             files: [
                 {
-                    src: [ 'src/**/*.css', 'src/**/*.less' ],
+                    src: [ 'src/**/*.css', 'src/**/*.less', '!**/*.md' ],
                     dest: '<%= build_directory %>/',
                     cwd: '.',
                     expand: true
@@ -87,7 +87,7 @@ module.exports = {
         copy_all_to_bin: {
             files: [
                 {
-                    src: [ '**', '!**/*.less','!src/less' ],
+                    src: [ '**', '!**/*.less','!src/less', '!**/*.md', '!src/**/*.css' ],
                     dest: '<%= bin_directory %>/',
                     cwd: '<%= build_directory %>/',
                     expand: true

@@ -23,8 +23,5 @@ module.exports = {
             dest: 'CHANGELOG.md',
             template: 'grunt/changelog.tpl'
         }
-    },
-
-    //Removes all the files in the build and the compile directories
-    clean: [ '<%= build_directory %>', '<%= bin_directory %>']
+    }
 };
