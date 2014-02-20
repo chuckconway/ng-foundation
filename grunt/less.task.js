@@ -11,7 +11,7 @@ module.exports = {
                 //sourceMapFilename: '<%= build_dir %>/assets/compiled.css.map',
                 //sourceMapRootpath: 'source/less/'
             },
-            files: { '<%= build_directory %>/assets/<%= pkg.name %>-<%= pkg.version %>.css' : ['<%= app.less %>']}
+            files: { '<%= bin_directory %>/assets/<%= pkg.name %>-<%= pkg.version %>.css' : ['<%= app.less %>', 'src/**/*.less', 'src/**/*.css']}
         },
         lint_concat: {
             options:{
@@ -20,7 +20,7 @@ module.exports = {
 //                sourceMapFilename: '<%= build_directory %>/assets/compiled.css.map',
 //                sourceMapRootpath: 'source/less/'
             },
-            files: { '<%= build_directory %>/assets/<%= pkg.name %>-<%= pkg.version %>.css' : ['<%= app.less %>', '/src/**/*.less']}
+            files: { '<%= build_directory %>/assets/<%= pkg.name %>-<%= pkg.version %>.css' : ['<%= app.less %>', 'src/**/*.less']}
         }
 
     }

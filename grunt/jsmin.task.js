@@ -3,20 +3,15 @@
  */
 
 module.exports = {
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  This is the jsmin task secion. It includes uglifying local and dependencies and wrapping local javascript in a self executing method.
-//  compiled js is saved to bin/assets/
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
  * Minify the sources!
  */
         uglify: {
         local_javascript: {
             files: {
-                '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js': [
-                    '<%= build_directory %>/src/**/*.js',
+                '<%= build_directory %>/assets/<%= pkg.name %>-<%= pkg.version %>.js': [
+                    'src/app/**/*.js',
                     '<%= html2js.app.dest %>',
                     '<%= html2js.common.dest %>'
                 ]
@@ -27,7 +22,7 @@ module.exports = {
                 banner: '<%= meta.banner %>'
             },
             files: {
-                '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js': [
+                '<%= bin_directory %>/assets/<%= pkg.name %>-<%= pkg.version %>.js': [
                     '<%= dependencies.js %>',
                     '<%= build_directory %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
                 ]

@@ -61,7 +61,8 @@ module.exports = {
     js: [
       'dependencies/angular/angular.js',
       'dependencies/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'dependencies/angular-ui-router/release/angular-ui-router.js'
+      'dependencies/angular-ui-router/release/angular-ui-router.js',
+      'dependencies/angular-ui-utils/ui-utils.js'
     ],
     css: [
     ],

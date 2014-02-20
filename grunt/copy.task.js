@@ -64,12 +64,22 @@ module.exports = {
             ]
         },
         //We are not doing anything (compiling) with the assets, copy them into the bin/assets directory.
-        copy_assets_from_build_to_bin: {
+        copy_assets_to_bin: {
             files: [
                 {
-                    src: [ '**' ],
+                    src: [ '**','!**/*.less', '!**/*.js', '!**/*.css', '!**/*.md' ],
                     dest: '<%= bin_directory %>/assets',
-                    cwd: '<%= build_directory %>/assets',
+                    cwd: 'src/assets',
+                    expand: true
+                }
+            ]
+        },
+        copy_common_to_bin: {
+            files: [
+                {
+                    src: [ '**','!**/*.less', '!**/*.js', '!**/*.css', '!**/*.md' ],
+                    dest: '<%= bin_directory %>/common',
+                    cwd: 'src/common',
                     expand: true
                 }
             ]

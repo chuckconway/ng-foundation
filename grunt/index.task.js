@@ -15,7 +15,7 @@ module.exports = {
          * add all script files directly to the `<head>` of `index.html`. The
          * `src` property contains the list of included files.
          */
-        build: {
+        debug: {
             dir: '<%= build_directory %>',
             src: ['<%= dependencies.js %>',
                   '<%= build_directory %>/src/**/*.js',
@@ -29,13 +29,9 @@ module.exports = {
          * alter the above to include only a single JavaScript and a single CSS
          * file. Now we're back!
          */
-        compile: {
+        release: {
             dir: '<%= bin_directory %>',
-            src: [
-                //'<%= concat.compile_js.dest %>',
-                '<%= dependencies.css %>'
-                //'//<%= recess.compile.dest %>'
-            ]
+            src: ['<%= bin_directory %>/assets/**/*.css', '<%= bin_directory %>/assets/**/*.js' ]
         }
     }
 

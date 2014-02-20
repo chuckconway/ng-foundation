@@ -28,9 +28,7 @@ module.exports = function(grunt){
 
     //Copies the files javascript files from the src folder into the build directory and then combines, minifies and
     //copies them into the bin/assets folder.
-    grunt.registerTask( 'jsmin', ['copy:app_javascript_to_build_javascript',
-                                  'copy:dependencies_javascript_to_build_javascript',
-                                  'html2js',
+    grunt.registerTask( 'jsmin', ['html2js',
                                   'uglify:local_javascript',
                                   'wrap:wrap_local_javascript',
                                   'uglify:compile_all_files' ]);
@@ -44,9 +42,16 @@ module.exports = function(grunt){
                                 'copy:dependencies_assets_to_build_assets',
                                 'copy:app_javascript_to_build_javascript',
                                 'copy:dependencies_javascript_to_build_javascript',
-                                'index:build',
+                                'index:debug',
                                 'copy:copy_all_to_bin']);
 
+    grunt.registerTask('release',['clean',
+        'less:lint_compile_concat',
+        'jsmin',
+        'copy:copy_assets_to_bin',
+        'copy:copy_common_to_bin',
+        'index:release']);
+ //TODO: clean empty directories: http://stackoverflow.com/questions/21001469/grunt-file-copy-exclude-empty-folders
 //    grunt.registerTask('qa',[]);
 //    grunt.registerTask('production',[]);
 
