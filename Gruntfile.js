@@ -12,6 +12,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-wrap');
+    grunt.loadNpmTasks('grunt-karma');
 
     //Load the build.config.js file. This file contains build specific information that will replace
     //tokens in the taskConfig object. Also load other grunt tasks.
@@ -21,7 +22,8 @@ module.exports = function(grunt){
                          './grunt/less.task.js',
                          './grunt/index.task.js',
                          './grunt/misc.task.js',
-                         './grunt/clean.task.js']);
+                         './grunt/clean.task.js',
+                         './grunt/karma.task.js']);
 
     grunt.initConfig(config);
 
@@ -33,6 +35,8 @@ module.exports = function(grunt){
                                   'uglify:local_javascript',
                                   'wrap:wrap_local_javascript',
                                   'uglify:compile_all_files' ]);
+
+    grunt.registerTask('runtests',['karmaconfig', 'karma'])
 
 
     grunt.registerTask('debug',['clean:all',
@@ -58,6 +62,30 @@ module.exports = function(grunt){
         'clean:build']);
 
     /**
+     * In order to make it safe to just compile or copy *only* what was changed,
+     * we need to ensure we are starting from a clean, fresh build. So we rename
+     * the `watch` task to `delta` (that's why the configuration var above is
+     * `delta`) and then add a new task called `watch` that does a clean build
+     * before watching for changes.
+     */
+    grunt.renameTask( 'watch', 'delta' );
+    grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
+
+    /**
+     * In order to avoid having to specify manually the files needed for karma to
+     * run, we use grunt to manage the list for us. The `karma/*` files are
+     * compiled as grunt templates for use by Karma. Yay!
+     */
+    grunt.registerMultiTask( 'karmaconfig', 'Process karma config templates', function () {
+        var jsFiles = filterForJS( this.filesSrc );
+
+        processTemplateAndCopyToDestination('karma/karma-unit.tpl.js', grunt.config( 'build_dir' ) + '/karma-unit.js',
+        {
+            scripts: jsFiles
+        });
+    });
+
+    /**
      * The index.html template includes the stylesheet and javascript sources
      * based on dynamic names calculated in this Gruntfile. This task assembles
      * the list into variables for the template to use and then runs the
@@ -66,24 +94,14 @@ module.exports = function(grunt){
     grunt.registerMultiTask( 'index', 'Process index.html template', function () {
         var dirRE = new RegExp( '^('+grunt.config('build_directory')+'|'+grunt.config('bin_directory')+')\/', 'g' );
 
-        var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
-            return file.replace( dirRE, '' );
-        });
+        var jsFiles = filterByFileExtension(this.filesSrc, /\.js$/, dirRE);
+        var cssFiles = filterByFileExtension(this.filesSrc, /\.css$/, dirRE);
 
-        var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
-            return file.replace( dirRE, '' );
-        });
-
-        grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
-            process: function ( contents, path ) {
-                return grunt.template.process( contents, {
-                    data: {
-                        scripts: jsFiles,
-                        styles: cssFiles,
-                        version: grunt.config( 'pkg.version' )
-                    }
-                });
-            }
+        processTemplateAndCopyToDestination('src/index.html', this.data.dir + '/index.html',
+        {
+            scripts: jsFiles,
+            styles: cssFiles,
+            version: grunt.config( 'pkg.version' )
         });
     });
 
@@ -97,21 +115,21 @@ module.exports = function(grunt){
         return config;
     };
 
-    /**
-     * A utility function to get all app JavaScript sources.
-     */
-    function filterForJS ( files ) {
-        return files.filter( function ( file ) {
-            return file.match( /\.js$/ );
+    function processTemplateAndCopyToDestination(src, dest, data){
+        grunt.file.copy(src, dest, {
+            process: function ( contents, path ) {
+                return grunt.template.process( contents, {
+                    data: data
+                });
+            }
         });
     }
 
-    /**
-     * A utility function to get all app CSS sources.
-     */
-    function filterForCSS ( files ) {
-        return files.filter( function ( file ) {
-            return file.match( /\.css$/ );
-        });
+    function filterByFileExtension(files, extension, dirRE) {
+        return files.filter(function (file) {
+            return file.match(extension);
+        }).map( function ( file ) {
+                return file.replace( dirRE, '' );
+            });
     }
 };
