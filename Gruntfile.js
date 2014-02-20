@@ -15,7 +15,7 @@ module.exports = function(grunt){
 
     //Load the build.config.js file. This file contains build specific information that will replace
     //tokens in the taskConfig object. Also load other grunt tasks.
-    var config = extend(['./grunt/build.config.js',
+    var config = extend(['./grunt/config/build.local.config.js',
                          './grunt/jsmin.task.js',
                          './grunt/copy.task.js',
                          './grunt/less.task.js',
@@ -28,17 +28,27 @@ module.exports = function(grunt){
 
     //Copies the files javascript files from the src folder into the build directory and then combines, minifies and
     //copies them into the bin/assets folder.
-    grunt.registerTask( 'jsmin', ['copy:copy_app_javascript_files_to_build_javascript_directory',
-                                  'copy:copy_dependencies_javascript_files_to_build_javascript_directory',
+    grunt.registerTask( 'jsmin', ['copy:app_javascript_to_build_javascript',
+                                  'copy:dependencies_javascript_to_build_javascript',
                                   'html2js',
                                   'uglify:local_javascript',
                                   'wrap:wrap_local_javascript',
                                   'uglify:compile_all_files' ]);
 
 
-    grunt.registerTask('local',[]);
-    grunt.registerTask('qa',[]);
-    grunt.registerTask('production',[]);
+    grunt.registerTask('debug',['clean',
+                                'copy:app_styles_to_build_styles',
+                                'less:lint_concat',
+                                'copy:local_assets_to_build',
+                                'copy:app_styles_to_build_styles',
+                                'copy:dependencies_assets_to_build_assets',
+                                'copy:app_javascript_to_build_javascript',
+                                'copy:dependencies_javascript_to_build_javascript',
+                                'index:build',
+                                'copy:copy_all_to_bin']);
+
+//    grunt.registerTask('qa',[]);
+//    grunt.registerTask('production',[]);
 
     /**
      * The index.html template includes the stylesheet and javascript sources
@@ -48,9 +58,11 @@ module.exports = function(grunt){
      */
     grunt.registerMultiTask( 'index', 'Process index.html template', function () {
         var dirRE = new RegExp( '^('+grunt.config('build_directory')+'|'+grunt.config('bin_directory')+')\/', 'g' );
+
         var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
             return file.replace( dirRE, '' );
         });
+
         var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
             return file.replace( dirRE, '' );
         });

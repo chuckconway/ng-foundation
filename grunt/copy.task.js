@@ -8,7 +8,7 @@ module.exports = {
     copy: {
         // Copy the local files found in the assets folder to the assets folder in the build directory.
         //The build directory is a staging area where we can freely manuliplate the files without changing the source
-        copy_local_assets_from_src_to_build_directory:{
+        local_assets_to_build:{
             files:[
                 {
                     cwd:'src/assets',
@@ -19,7 +19,7 @@ module.exports = {
             ]
         },
         //copy all the dependencies defined in the build.config.js into the build assets directory
-        copy_dependencies_assets_to_build_assets_directory: {
+        dependencies_assets_to_build_assets: {
             files: [
                 {
                     src: [ '<%= dependencies.assets %>' ],
@@ -31,7 +31,7 @@ module.exports = {
             ]
         },
         //copy all the app javascript files into the build directory. Keeping the folder structure in place.
-        copy_app_javascript_files_to_build_javascript_directory: {
+        app_javascript_to_build_javascript: {
             files: [
                 {
                     src: [ '<%= app.js %>' ],
@@ -41,8 +41,19 @@ module.exports = {
                 }
             ]
         },
+        //copy all the app javascript files into the build directory. Keeping the folder structure in place.
+        app_styles_to_build_styles: {
+            files: [
+                {
+                    src: [ 'src/**/*.css', 'src/**/*.less' ],
+                    dest: '<%= build_directory %>/',
+                    cwd: '.',
+                    expand: true
+                }
+            ]
+        },
         //copy the declared dependencies in the build.config.js to the build directory
-        copy_dependencies_javascript_files_to_build_javascript_directory: {
+        dependencies_javascript_to_build_javascript: {
             files: [
                 {
                     src: [ '<%= dependencies.js %>' ],
@@ -59,6 +70,16 @@ module.exports = {
                     src: [ '**' ],
                     dest: '<%= bin_directory %>/assets',
                     cwd: '<%= build_directory %>/assets',
+                    expand: true
+                }
+            ]
+        },
+        copy_all_to_bin: {
+            files: [
+                {
+                    src: [ '**', '!**/*.less','!src/less' ],
+                    dest: '<%= bin_directory %>/',
+                    cwd: '<%= build_directory %>/',
                     expand: true
                 }
             ]

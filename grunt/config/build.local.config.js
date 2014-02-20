@@ -20,7 +20,7 @@ module.exports = {
    * app's unit tests.
    */
   app: {
-    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/client/assets/**/*.js','!src/server/**/*.js' ],
+    js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js','!src/server/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
 
     app_templates: [ 'src/app/**/*.tpl.html' ],
@@ -61,9 +61,7 @@ module.exports = {
     js: [
       'dependencies/angular/angular.js',
       'dependencies/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'dependencies/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
-      'dependencies/angular-ui-router/release/angular-ui-router.js',
-      'dependencies/angular-ui-utils/modules/route/route.js'
+      'dependencies/angular-ui-router/release/angular-ui-router.js'
     ],
     css: [
     ],

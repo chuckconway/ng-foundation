@@ -16,15 +16,12 @@ module.exports = {
          * `src` property contains the list of included files.
          */
         build: {
-            dir: '<%= bin_directory %>',
-            src: [
-                '<%= dependencies.js %>',
-                '<%= build_directory %>/src/**/*.js'
-                //'<%= html2js.common.dest %>',
-                //'<%= html2js.app.dest %>',
-                //'<%= vendor_files.css %>',
-                //'<%= recess.build.dest %>'
-            ]
+            dir: '<%= build_directory %>',
+            src: ['<%= dependencies.js %>',
+                  '<%= build_directory %>/src/**/*.js',
+                  '<%= dependencies.css %>',
+                  '<%= build_directory %>/assets/**/*.css',
+                  '<%= build_directory %>/src/**/*.css']
         },
 
         /**
