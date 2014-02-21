@@ -13,7 +13,7 @@ module.exports = {
      *
      * But we don't need the same thing to happen for all the files.
      */
-    delta: {
+    watch: {
         /**
          * By default, we want the Live Reload to work for all tasks; this is
          * overridden in some tasks (like this file) where browser resources are
@@ -44,7 +44,7 @@ module.exports = {
             files: [
                 '<%= app.js %>'
             ],
-            tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs' ]
+            tasks: [ 'jshint:src', 'karma:unit:run', 'copy:app_javascript_to_build_javascript' ]
         },
 
 
@@ -64,7 +64,7 @@ module.exports = {
          */
         html: {
             files: [ '<%= app.html %>' ],
-            tasks: [ 'index:build' ]
+            tasks: [ 'index:debug' ]
         },
 
         /**
@@ -83,16 +83,16 @@ module.exports = {
          */
         less: {
             files: [ 'src/**/*.less' ],
-            tasks: [ 'recess:build' ]
+            tasks: [ 'less:lint_concat' ]
         },
 
         /**
          * When a JavaScript unit test file changes, we only want to lint it and
          * run the unit tests. We don't want to do any live reloading.
          */
-        jsunit: {
+        spec: {
             files: [
-                '<%= app.jsunit %>'
+                '<%= app.spec %>'
             ],
             tasks: [ 'jshint:test', 'karma:unit:run' ],
             options: {

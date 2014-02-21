@@ -13,6 +13,8 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-wrap');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     //Load the build.config.js file. This file contains build specific information that will replace
     //tokens in the taskConfig object. Also load other grunt tasks.
@@ -23,7 +25,9 @@ module.exports = function(grunt){
                          './grunt/index.task.js',
                          './grunt/misc.task.js',
                          './grunt/clean.task.js',
-                         './grunt/karma.task.js']);
+                         './grunt/karma.task.js',
+                         './grunt/watch.task.js',
+                         './grunt/jshint.task.js']);
 
     grunt.initConfig(config);
 
@@ -36,9 +40,6 @@ module.exports = function(grunt){
                                   'wrap:wrap_local_javascript',
                                   'uglify:compile_all_files' ]);
 
-    grunt.registerTask('runtests',['karmaconfig', 'karma'])
-
-
     grunt.registerTask('debug',['clean:all',
                                 'copy:app_styles_to_build_styles',
                                 'less:lint_concat',
@@ -49,8 +50,7 @@ module.exports = function(grunt){
                                 'copy:dependencies_javascript_to_build_javascript',
                                 'index:debug',
                                 'copy:copy_all_to_bin',
-                                'clean:emptydirectories',
-                                'clean:build']);
+                                'clean:emptydirectories']);
 
     grunt.registerTask('release',['clean:all',
         'less:lint_compile_concat',
@@ -58,18 +58,16 @@ module.exports = function(grunt){
         'copy:copy_assets_to_bin',
         'copy:copy_common_to_bin',
         'index:release',
-        'clean:emptydirectories',
-        'clean:build']);
+        'clean:emptydirectories']);
 
     /**
      * In order to make it safe to just compile or copy *only* what was changed,
      * we need to ensure we are starting from a clean, fresh build. So we rename
-     * the `watch` task to `delta` (that's why the configuration var above is
-     * `delta`) and then add a new task called `watch` that does a clean build
+     * the `watch` task to `watcher` (that's why the configuration var above is
+     * `watcher`) and then add a new task called `watch` that does a clean build
      * before watching for changes.
      */
-   // grunt.renameTask( 'watch', 'delta' );
-   // grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
+   grunt.registerTask( 'watcher', [ 'debug', 'karma:unit', 'watch' ] );
 
     /**
      * In order to avoid having to specify manually the files needed for karma to

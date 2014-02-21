@@ -274,7 +274,7 @@ changes:
   template files are part of the initial JavaScript payload and do not require
   any future XHR.  The template cache files are `build/template-app.js` and
   `build/template-common.js`.
-* `delta:jsunit` - When any `*.spec.js` file in `src/` changes, the test files
+* `delta:spec` - When any `*.spec.js` file in `src/` changes, the test files
   are linted and the unit tests are executed.
 * `delta:coffeeunit` - When any `*.spec.coffee` file in `src/` changes, the test
   files are linted, compiled their tests executed.

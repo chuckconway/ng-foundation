@@ -66,7 +66,7 @@ module.exports = {
                 }
             },
             src: [ '<%= app.app_templates %>' ],
-                dest: '<%= build_directory %>/assets/templates-app-<%= pkg.version %>.js'
+            dest: '<%= build_directory %>/assets/templates-app-<%= pkg.version %>.js'
         },
 
         /**
@@ -87,7 +87,7 @@ module.exports = {
                 }
             },
             src: [ '<%= app.common_templates %>' ],
-                dest: '<%= build_directory %>/assets/templates-common-<%= pkg.version %>.js'
+            dest: '<%= build_directory %>/assets/templates-common-<%= pkg.version %>.js'
         }
     }
 };
