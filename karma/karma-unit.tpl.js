@@ -11,10 +11,10 @@ module.exports = function ( karma ) {
         files: [
             <% scripts.forEach( function ( file ) { %>'<%= file %>',
                 <% }); %>
-            'src/client/**/*.js',
+            'src/**/*.js',
     ],
     exclude: [
-      'src/client/assets/**/*.js'
+      'src/assets/**/*.js'
     ],
     frameworks: [ 'jasmine' ],
     plugins: [ 'karma-jasmine', 'karma-firefox-launcher', 'karma-chrome-launcher', 'karma-phantomjs-launcher', 'karma-coffee-preprocessor' ],

@@ -68,8 +68,8 @@ module.exports = function(grunt){
      * `delta`) and then add a new task called `watch` that does a clean build
      * before watching for changes.
      */
-    grunt.renameTask( 'watch', 'delta' );
-    grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
+   // grunt.renameTask( 'watch', 'delta' );
+   // grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
 
     /**
      * In order to avoid having to specify manually the files needed for karma to
@@ -77,9 +77,9 @@ module.exports = function(grunt){
      * compiled as grunt templates for use by Karma. Yay!
      */
     grunt.registerMultiTask( 'karmaconfig', 'Process karma config templates', function () {
-        var jsFiles = filterForJS( this.filesSrc );
+        var jsFiles = this.filesSrc.filter( function ( file ) {return file.match( /\.js$/ );});
 
-        processTemplateAndCopyToDestination('karma/karma-unit.tpl.js', grunt.config( 'build_dir' ) + '/karma-unit.js',
+        processTemplateAndCopyToDestination('karma/karma-unit.tpl.js', grunt.config( 'build_directory' ) + '/karma-unit.js',
         {
             scripts: jsFiles
         });
