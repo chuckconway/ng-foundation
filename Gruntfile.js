@@ -25,15 +25,11 @@ module.exports = function(grunt){
                          './grunt/index.task.js',
                          './grunt/misc.task.js',
                          './grunt/clean.task.js',
-                         './grunt/karma.task.js',
                          './grunt/watch.task.js',
+                         './grunt/karma.task.js',
                          './grunt/jshint.task.js']);
 
-    //set karma options.
-    config.karma.options.files = filePatterns(config.dependencies.js, config.tests.js);
     grunt.initConfig(config);
-
-
 
     //Define Grunt tasks.
 
@@ -63,6 +59,7 @@ module.exports = function(grunt){
         'copy:copy_common_to_bin',
         'index:release',
         'clean:emptydirectories']);
+
 
     /**
      * In order to make it safe to just compile or copy *only* what was changed,
@@ -115,11 +112,11 @@ module.exports = function(grunt){
             config = _.extend(config, require(tasks[i]));
         }
         return config;
-    };
+    }
 
     function processTemplateAndCopyToDestination(src, dest, data){
         grunt.file.copy(src, dest, {
-            process: function ( contents, path ) {
+            process: function ( contents) {
                 return grunt.template.process( contents, {
                     data: data
                 });
@@ -134,13 +131,6 @@ module.exports = function(grunt){
                 return file.replace( dirRE, '' );
             });
     }
-
-    function filePatterns(dependencies, tests){
-        var _ = require('lodash');
-
-        var jsFiles = _.union(dependencies, tests,['src/**/*.js'])
-        return jsFiles;
-    };
 };
 
 
