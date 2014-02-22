@@ -29,7 +29,11 @@ module.exports = function(grunt){
                          './grunt/watch.task.js',
                          './grunt/jshint.task.js']);
 
+    //set karma options.
+    config.karma.options.files = filePatterns(config.dependencies.js, config.tests.js);
     grunt.initConfig(config);
+
+
 
     //Define Grunt tasks.
 
@@ -130,4 +134,13 @@ module.exports = function(grunt){
                 return file.replace( dirRE, '' );
             });
     }
+
+    function filePatterns(dependencies, tests){
+        var _ = require('lodash');
+
+        var jsFiles = _.union(dependencies, tests,['src/**/*.js'])
+        return jsFiles;
+    };
 };
+
+

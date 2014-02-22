@@ -8,7 +8,7 @@ module.exports = {
     karma: {
         options: {
             basePath: '../',
-            files: filePatterns(),
+            files: [],
             exclude: ['src/assets/**/*.js'],
             frameworks: [ 'jasmine' ],
             plugins: [ 'karma-jasmine', 'karma-firefox-launcher', 'karma-chrome-launcher', 'karma-phantomjs-launcher', 'karma-coffee-preprocessor' ],
@@ -49,32 +49,6 @@ module.exports = {
             background: true
         },
         continuous: { singleRun: true }
-    },
-
-    /**
-     * This task compiles the karma template so that changes to its file array
-     * don't have to be managed manually.
-     */
-    karmaconfig: {
-        unit: {
-            dir: '<%= build_directory %>',
-            src: [
-                '<%= dependencies.js %>',
-                '<%= html2js.app.dest %>',
-                '<%= html2js.common.dest %>',
-                '<%= tests.js %>'
-            ]
-        }
     }
 };
 
-function filePatterns() {
-
-    var settings = requirejs('build.local.config.js');
-    var _ = requirejs('lodash');
-
-    var jsFiles = _.union(settings.dependencies.js, settings.test.js,['src/**/*.js'])
-    console.writeln(jsFiles);
-
-    return jsFiles;
-};
