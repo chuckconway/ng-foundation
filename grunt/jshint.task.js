@@ -1,7 +1,5 @@
-/**
- * Created by chuckconway on 2/21/14.
- */
-/**
+
+/*
  * `jshint` defines the rules of our linter as well as which files we
  * should check. This file, all javascript sources, and all our unit tests
  * are linted based on the policies listed in `options`. But we can also

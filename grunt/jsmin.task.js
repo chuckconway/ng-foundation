@@ -1,6 +1,3 @@
-/**
- * Created by chuckconway on 2/19/14.
- */
 
 module.exports = {
 

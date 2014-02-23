@@ -1,8 +1,5 @@
-/**
- * Created by chuckconway on 2/19/14.
- */
-module.exports = {
 
+module.exports = {
     /**
      * And for rapid development, we have a watch set up that checks to see if
      * any of the files listed below change, and then to execute the listed

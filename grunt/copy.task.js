@@ -1,6 +1,4 @@
-/**
- * Created by chuckconway on 2/19/14.
- */
+"use strict";
 
 module.exports = {
 
@@ -87,7 +85,7 @@ module.exports = {
         copy_all_to_bin: {
             files: [
                 {
-                    src: [ '**', '!**/*.less','!src/less', '!**/*.md', '!src/**/*.css' ],
+                    src: [ '**', '!**/*.less','!src/less', '!**/*.md'],
                     dest: '<%= bin_directory %>/',
                     cwd: '<%= build_directory %>/',
                     expand: true

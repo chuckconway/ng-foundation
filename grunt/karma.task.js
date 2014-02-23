@@ -1,6 +1,5 @@
-/**
- * Created by chuckconway on 2/20/14.
- */
+"use strict";
+
 module.exports = {
 
     //http://phantomjs.org/

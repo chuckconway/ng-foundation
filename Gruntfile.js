@@ -1,8 +1,6 @@
-//This is the Gruntjs build file for ng-node-foundation.
-//The intent of this Gruntjs build file is to put into place all the
-//build plumbing for a new project using nodejs and angularjs.
 
 module.exports = function(grunt){
+    "use strict";
 
     //tasked used in this grunt build script
     grunt.loadNpmTasks('grunt-conventional-changelog');

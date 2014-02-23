@@ -1,6 +1,4 @@
-/**
- * Created by chuckconway on 2/22/14.
- */
+
 module.exports = function ( karma ) {
     karma.configure({
         /**

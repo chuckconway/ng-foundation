@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Each section of the site has its own module. It probably also has
  * submodules, though this boilerplate is too simple to demonstrate it. Within
@@ -12,10 +14,7 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.home', [
-        'ui.state',
-        'plusOne'
-    ])
+angular.module( 'ngBoilerplate.home', ['ui.state', 'plusOne'])
 
 /**
  * Each section or module of the site can also have its own routes. AngularJS
@@ -23,6 +22,7 @@ angular.module( 'ngBoilerplate.home', [
  * this way makes each module more "self-contained".
  */
     .config(function config( $stateProvider ) {
+        "use strict";
         $stateProvider.state( 'home', {
             url: '/home',
             views: {
@@ -39,4 +39,5 @@ angular.module( 'ngBoilerplate.home', [
  * And of course we define a controller for our route.
  */
     .controller( 'HomeCtrl', function HomeController( $scope ) {
+        "use strict";
     });

@@ -1,6 +1,4 @@
-/**
- * Created by chuckconway on 2/19/14.
- */
+
 module.exports = {
     //concatenate the less files and copy them into the build/assets folder.
     less: {

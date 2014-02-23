@@ -1,3 +1,4 @@
+
 angular.module( 'ngBoilerplate', [
         'templates-app',
         'templates-common',
@@ -8,6 +9,7 @@ angular.module( 'ngBoilerplate', [
     ])
 
     .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+        "use strict";
         $urlRouterProvider.otherwise( '/home' );
     })
 
@@ -15,6 +17,7 @@ angular.module( 'ngBoilerplate', [
     })
 
     .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+        "use strict";
         $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
             if ( angular.isDefined( toState.data.pageTitle ) ) {
                 $scope.pageTitle = toState.data.pageTitle + ' | ngBoilerplate' ;

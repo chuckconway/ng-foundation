@@ -1,6 +1,4 @@
-/**
- * Created by chuckconway on 2/19/14.
- */
+
 module.exports = {
     //This reads the existing package.json so we can use the version and other metadata
     //as we build the application.

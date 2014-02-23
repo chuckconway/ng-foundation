@@ -1,6 +1,4 @@
-/**
- * Created by chuckconway on 2/20/14.
- */
+
 module.exports = {
 
     clean:{
