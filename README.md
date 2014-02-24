@@ -1,6 +1,6 @@
-# [ngBoilerplate](http://joshdmiller.github.com/ng-boilerplate) [![Build Status](https://travis-ci.org/joshdmiller/ng-boilerplate.png?branch=master)](https://travis-ci.org/joshdmiller/ng-boilerplate)
+# NG Foundation
 
-An opinionated kickstarter for [AngularJS](http://angularjs.org) projects.
+This is a fork of the popular angular kickstarter ngBoilerplate[http://joshdmiller.github.io/ng-boilerplate/#/home] project.
 
 ***
 
@@ -9,15 +9,15 @@ An opinionated kickstarter for [AngularJS](http://angularjs.org) projects.
 Install Node.js and then:
 
 ```sh
-$ git clone git://github.com/joshdmiller/ng-boilerplate
-$ cd ng-boilerplate
+$ git clone git://github.com/chuckconway/ng-foundation
+$ cd ng-foundation
 $ sudo npm -g install grunt-cli karma bower
 $ npm install
 $ bower install
 $ grunt watch
 ```
 
-Finally, open `file:///path/to/ng-boilerplate/build/index.html` in your browser.
+Finally, open `file:///path/to/ng-foundation/bin/index.html` in your browser.
 
 Happy hacking!
 
