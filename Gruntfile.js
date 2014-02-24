@@ -39,6 +39,7 @@ module.exports = function(grunt){
                                   'uglify:compile_all_files' ]);
 
     grunt.registerTask('debug',['clean:all',
+                                'html2js',
                                 'copy:app_styles_to_build_styles',
                                 'less:lint_concat',
                                 'copy:local_assets_to_build',

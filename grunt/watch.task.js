@@ -41,7 +41,7 @@ module.exports = {
             files: [
                 '<%= app.js %>'
             ],
-            tasks: [ 'jshint:src', 'karma:unit:run', 'copy:app_javascript_to_build_javascript' ]
+            tasks: [ 'jshint:src', 'karma:unit:run', 'copy:app_javascript_to_build_javascript', 'copy:copy_all_to_bin' ]
         },
 
 
@@ -53,7 +53,7 @@ module.exports = {
             files: [
                 'src/assets/**/*'
             ],
-            tasks: [ 'copy:build_assets' ]
+            tasks: [ 'copy:build_assets', 'copy:copy_all_to_bin' ]
         },
 
         /**
@@ -72,7 +72,7 @@ module.exports = {
                 '<%= app.app_templates %>',
                 '<%= app.common_templates %>'
             ],
-            tasks: [ 'html2js' ]
+            tasks: [ 'html2js', 'copy:copy_all_to_bin' ]
         },
 
         /**
@@ -80,7 +80,7 @@ module.exports = {
          */
         less: {
             files: [ 'src/**/*.less' ],
-            tasks: [ 'less:lint_concat' ]
+            tasks: [ 'less:lint_concat', 'copy:copy_all_to_bin' ]
         },
 
         /**

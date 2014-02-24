@@ -1,16 +1,16 @@
 {
   "author": "Chuck Conway",
-  "name": "ng-node-foundation",
-  "version": "0.1.2",
-  "homepage": "https://github.com/chuckconway/ng-node-foundation",
+  "name": "ng-foundation",
+  "version": "0.1.5",
+  "homepage": "https://github.com/chuckconway/ng-foundation",
   "licenses": {
     "type": "MIT",
-    "url": "https://raw.github.com/chuckconway/ng-node-foundation/master/LICENSE"
+    "url": "https://raw.github.com/chuckconway/ng-foundation/master/LICENSE"
   },
-  "bugs": "https://github.com/chuckconway/ng-node-foundation/issues",
+  "bugs": "https://github.com/chuckconway/ng-foundation/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:chuckconway/ng-node-foundation.git"
+    "url": "git@github.com:chuckconway/ng-foundation.git"
   },
   "dependencies": {},
   "devDependencies": {

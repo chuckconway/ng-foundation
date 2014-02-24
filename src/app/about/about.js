@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Each section of the site has its own module. It probably also has
  * submodules, though this boilerplate is too simple to demonstrate it. Within

@@ -17,10 +17,11 @@ module.exports = {
         debug: {
             dir: '<%= build_directory %>',
             src: ['<%= dependencies.js %>',
-                  '<%= build_directory %>/src/**/*.js',
-                  '<%= dependencies.css %>',
-                  '<%= build_directory %>/assets/**/*.css',
-                  '<%= build_directory %>/src/**/*.css']
+                '<%= build_directory %>/assets/**/*.js',
+                '<%= build_directory %>/src/**/*.js',
+                '<%= dependencies.css %>',
+                '<%= build_directory %>/assets/**/*.css',
+                '<%= build_directory %>/src/**/*.css']
         },
 
         /**
