@@ -61,7 +61,7 @@ module.exports = {
          */
         html: {
             files: [ '<%= app.html %>' ],
-            tasks: [ 'index:debug' ]
+            tasks: [ 'debug' ]
         },
 
         /**
