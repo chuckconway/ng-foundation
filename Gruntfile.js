@@ -50,6 +50,8 @@ module.exports = function(grunt){
                                 'copy:copy_all_to_bin',
                                 'clean:emptydirectories']);
 
+    grunt.registerTask('default',['debug']);
+
     grunt.registerTask('release',['clean:all',
         'less:lint_compile_concat',
         'jsmin',
