@@ -1,6 +1,6 @@
 # NG Foundation
 
-This is a fork of the popular angular kickstarter ngBoilerplate[http://joshdmiller.github.io/ng-boilerplate/#/home] project.
+This is a fork of the popular angular kickstarter [ngBoilerplate](http://joshdmiller.github.io/ng-boilerplate/#/home) project.
 
 ***
 
