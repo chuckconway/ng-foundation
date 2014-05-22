@@ -16,7 +16,7 @@ module.exports = function(grunt){
 
     //Load the build.config.js file. This file contains build specific information that will replace
     //tokens in the taskConfig object. Also load other grunt tasks.
-    var config = extend(['./grunt/config/build.local.config.js',
+    var config = extend(['./grunt/config/build.config.js',
                          './grunt/jsmin.task.js',
                          './grunt/copy.task.js',
                          './grunt/less.task.js',
@@ -47,6 +47,8 @@ module.exports = function(grunt){
                                 'copy:dependencies_assets_to_build_assets',
                                 'copy:app_javascript_to_build_javascript',
                                 'copy:dependencies_javascript_to_build_javascript',
+                                'copy:dependencies_css_to_build_css',
+                                'copy:dependencies_artifacts_to_build_artifacts',
                                 'index:debug',
                                 'copy:copy_all_to_bin',
                                 'clean:emptydirectories']);

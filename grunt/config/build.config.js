@@ -65,6 +65,7 @@ module.exports = {
       'dependencies/angular-ui-router/release/angular-ui-router.js',
       'dependencies/angular-ui-utils/ui-utils.js'
     ],
+    artifacts:[],
     css: [
     ],
     assets: [

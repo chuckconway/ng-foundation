@@ -43,7 +43,7 @@ module.exports = {
         app_styles_to_build_styles: {
             files: [
                 {
-                    src: [ 'src/**/*.css', 'src/**/*.less', '!**/*.md' ],
+                    src: [ 'src/**/*.css', 'src/**/*.less', 'src/**/*.otf', 'src/**/*.eot', 'src/**/*.svg', 'src/**/*.ttf', 'src/**/*.woff',  '!**/*.md' ],
                     dest: '<%= build_directory %>/',
                     cwd: '.',
                     expand: true
@@ -55,6 +55,26 @@ module.exports = {
             files: [
                 {
                     src: [ '<%= dependencies.js %>' ],
+                    dest: '<%= build_directory %>/',
+                    cwd: '.',
+                    expand: true
+                }
+            ]
+        },
+        dependencies_css_to_build_css: {
+            files: [
+                {
+                    src: [ '<%= dependencies.css %>' ],
+                    dest: '<%= build_directory %>/',
+                    cwd: '.',
+                    expand: true
+                }
+            ]
+        },
+        dependencies_artifacts_to_build_artifacts: {
+            files: [
+                {
+                    src: [ '<%= dependencies.artifacts %>' ],
                     dest: '<%= build_directory %>/',
                     cwd: '.',
                     expand: true
