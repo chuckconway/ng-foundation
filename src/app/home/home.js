@@ -12,7 +12,7 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.home', ['ui.state'])
+angular.module( 'ngfoundation.home', ['ui.router'])
 
 /**
  * Each section or module of the site can also have its own routes. AngularJS
@@ -21,14 +21,10 @@ angular.module( 'ngBoilerplate.home', ['ui.state'])
  */
     .config(function config( $stateProvider ) {
         "use strict";
-        $stateProvider.state( 'home', {
+        $stateProvider.state( 'home_index', {
             url: '/home',
-            views: {
-                "main": {
-                    controller: 'HomeCtrl',
-                    templateUrl: 'home/home.tpl.html'
-                }
-            },
+            controller: 'home.index',
+            templateUrl: 'home/home.tpl.html',
             data:{ pageTitle: 'Home' }
         });
     })
@@ -36,7 +32,7 @@ angular.module( 'ngBoilerplate.home', ['ui.state'])
 /**
  * And of course we define a controller for our route.
  */
-    .controller( 'HomeCtrl', function HomeController( $scope ) {
+    .controller( 'home.index', function HomeController( $scope ) {
         "use strict";
     })
 

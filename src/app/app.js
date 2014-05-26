@@ -1,10 +1,10 @@
 
-angular.module( 'ngBoilerplate', [
+angular.module( 'ngfoundation', [
         'templates-app',
         'templates-common',
-        'ngBoilerplate.home',
-        'ngBoilerplate.about',
-        'ui.state',
+        'ngfoundation.home',
+        'ngfoundation.about',
+
         'ui.route'
     ])
 
@@ -14,15 +14,6 @@ angular.module( 'ngBoilerplate', [
     })
 
     .run( function run () {
-    })
-
-    .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
-        "use strict";
-        $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-            if ( angular.isDefined( toState.data.pageTitle ) ) {
-                $scope.pageTitle = toState.data.pageTitle + ' | ngBoilerplate' ;
-            }
-        });
     })
 
 ;
